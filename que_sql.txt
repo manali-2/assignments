@@ -1,0 +1,77 @@
+1 To display all the records form STUDENT table.
+mysql> select * from student;
++-------+----------------+--------+------------+-------+------+----------+------------+
+| StdID | StdName        | Sex    | Percentage | Class | Sec  | Stream   | DOB        |
++-------+----------------+--------+------------+-------+------+----------+------------+
+|  1001 | Surekha Joshi  | Female |         82 |    12 | A    | Science  | 1998-08-03 |
+|  1002 | Maahi Agarwal  | Female |         56 |    11 | c    | Commerce | 2008-11-23 |
+|  1003 | Sanam Verma    | Male   |         59 |    11 | c    | Commerce | 2006-11-05 |
+|  1004 | Ronit Kumar    | Male   |         63 |    11 | c    | Commerce | 2003-09-14 |
+|  1005 | Dipesh Pulkit  | Male   |         78 |    11 | B    | Science  | 1997-05-11 |
+|  1006 | Jahanvi Puri   | Female |         60 |    11 | B    | Commerce | 2008-07-11 |
+|  1007 | Sanam Kumar    | Male   |         23 |    12 | F    | Commerce | 1996-10-01 |
+|  1008 | Sahil Saras    | Male   |         56 |    11 | C    | Commerce | 2008-11-07 |
+|  1009 | Akshra Agarwal | Female |         72 |    12 | B    | Commerce | 1996-10-01 |
+|  1010 | Stuti Mishra   | Female |         39 |    11 | F    | Science  | 2008-11-23 |
+|  1011 | Harsh Agarwal  | Male   |         42 |    11 | C    | Science  | 1998-08-03 |
+|  1012 | Nikunj Agarwal | Male   |         49 |    12 | C    | Commerce | 1998-06-28 |
+|  1013 | Akriti Saxena  | Female |         89 |    12 | A    | Science  | 2008-11-23 |
+|  1014 | Tani Rastogi   | Female |         82 |    12 | A    | Science  | 2008-11-23 |
++-------+----------------+--------+------------+-------+------+----------+------------+
+
+
+2. To display any name and date of birth from the table STUDENT.
+
+mysql> select stdname, dob from student;
++----------------+------------+
+| stdname        | dob        |
++----------------+------------+
+| Surekha Joshi  | 1998-08-03 |
+| Maahi Agarwal  | 2008-11-23 |
+| Sanam Verma    | 2006-11-05 |
+| Ronit Kumar    | 2003-09-14 |
+| Dipesh Pulkit  | 1997-05-11 |
+| Jahanvi Puri   | 2008-07-11 |
+| Sanam Kumar    | 1996-10-01 |
+| Sahil Saras    | 2008-11-07 |
+| Akshra Agarwal | 1996-10-01 |
+| Stuti Mishra   | 2008-11-23 |
+| Harsh Agarwal  | 1998-08-03 |
+| Nikunj Agarwal | 1998-06-28 |
+| Akriti Saxena  | 2008-11-23 |
+| Tani Rastogi   | 2008-11-23 |
++----------------+------------+
+
+
+3. To display all students record where percentage is greater of equal to 80 FROM student table. 
+mysql> select * from student where percentage>=80;
++-------+---------------+--------+------------+-------+------+---------+------------+
+| StdID | StdName       | Sex    | Percentage | Class | Sec  | Stream  | DOB        |
++-------+---------------+--------+------------+-------+------+---------+------------+
+|  1001 | Surekha Joshi | Female |         82 |    12 | A    | Science | 1998-08-03 |
+|  1013 | Akriti Saxena | Female |         89 |    12 | A    | Science | 2008-11-23 |
+|  1014 | Tani Rastogi  | Female |         82 |    12 | A    | Science | 2008-11-23 |
++-------+---------------+--------+------------+-------+------+---------+------------+
+
+
+4. To display student name, stream and percentage where percentage of student is more than 80 
+mysql> select stdname,stream,percentage from student where percentage>=80;
++---------------+---------+------------+
+| stdname       | stream  | percentage |
++---------------+---------+------------+
+| Surekha Joshi | Science |         82 |
+| Akriti Saxena | Science |         89 |
+| Tani Rastogi  | Science |         82 |
++---------------+---------+------------+
+
+
+5. To display all records of science students whose percentage is more than 75 form student table. 
+mysql> select * from student where stream = "Science" and percentage>75;
++-------+---------------+--------+------------+-------+------+---------+------------+
+| StdID | StdName       | Sex    | Percentage | Class | Sec  | Stream  | DOB        |
++-------+---------------+--------+------------+-------+------+---------+------------+
+|  1001 | Surekha Joshi | Female |         82 |    12 | A    | Science | 1998-08-03 |
+|  1005 | Dipesh Pulkit | Male   |         78 |    11 | B    | Science | 1997-05-11 |
+|  1013 | Akriti Saxena | Female |         89 |    12 | A    | Science | 2008-11-23 |
+|  1014 | Tani Rastogi  | Female |         82 |    12 | A    | Science | 2008-11-23 |
++-------+---------------+--------+------------+-------+------+---------+------------+
