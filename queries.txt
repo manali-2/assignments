@@ -1,0 +1,780 @@
+table:1
+CREATE TABLE Worker (
+	WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	FIRST_NAME CHAR(25),
+	LAST_NAME CHAR(25),
+	SALARY INT(15),
+	JOINING_DATE DATETIME,
+	DEPARTMENT CHAR(25)
+);
+
+INSERT INTO Worker 
+	(WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		(001, 'Monika', 'Arora', 100000, '21-02-20 09.00.00', 'HR'),
+		(002, 'Niharika', 'Verma', 80000, '21-06-11 09.00.00', 'Admin'),
+		(003, 'Vishal', 'Singhal', 300000, '21-02-20 09.00.00', 'HR'),
+		(004, 'Amitabh', 'Singh', 500000, '21-02-20 09.00.00', 'Admin'),
+		(005, 'Vivek', 'Bhati', 500000, '21-06-11 09.00.00', 'Admin'),
+		(006, 'Vipul', 'Diwan', 200000, '21-06-11 09.00.00', 'Account'),
+		(007, 'Satish', 'Kumar', 75000, '21-01-20 09.00.00', 'Account'),
+		(008, 'Geetika', 'Chauhan', 90000, '21-04-11 09.00.00', 'Admin');
+table :2
+
+
+
+CREATE TABLE Bonus (
+	WORKER_REF_ID INT,
+	BONUS_AMOUNT INT(10),
+	BONUS_DATE DATETIME,
+	FOREIGN KEY (WORKER_REF_ID)
+		REFERENCES Worker(WORKER_ID)
+        ON DELETE CASCADE
+);
+
+INSERT INTO Bonus 
+	(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+		(001, 5000, '23-02-20'),
+		(002, 3000, '23-06-11'),
+		(003, 4000, '23-02-20'),
+		(001, 4500, '23-02-20'),
+		(002, 3500, '23-06-11');
+
+table:3
+
+CREATE TABLE Title (
+	WORKER_REF_ID INT,
+	WORKER_TITLE CHAR(25),
+	AFFECTED_FROM DATETIME,
+	FOREIGN KEY (WORKER_REF_ID)
+		REFERENCES Worker(WORKER_ID)
+        ON DELETE CASCADE
+);
+
+INSERT INTO Title 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ (001, 'Manager', '2023-02-20 00:00:00'),
+ (002, 'Executive', '2023-06-11 00:00:00'),
+ (008, 'Executive', '2023-06-11 00:00:00'),
+ (005, 'Manager', '2023-06-11 00:00:00'),
+ (004, 'Asst. Manager', '2023-06-11 00:00:00'),
+ (007, 'Executive', '2023-06-11 00:00:00'),
+ (006, 'Lead', '2023-06-11 00:00:00'),
+ (003, 'Lead', '2023-06-11 00:00:00');
+.......................................................................................................................................
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| amazon             |
+| colege             |
+| information_schema |
+| mobile             |
+| mydb               |
+| mysql              |
+| org                |
+| performance_schema |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> drop database mydb;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create database mydb;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use mydb;
+Database changed
+mysql> REATE TABLE Worker (
+    -> WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> FIRST_NAME CHAR(25),
+    -> LAST_NAME CHAR(25),
+    -> SALARY INT(15),
+    -> JOINING_DATE DATETIME,
+    -> DEPARTMENT CHAR(25)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'REATE TABLE Worker (
+WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+FIRST_NA' at line 1
+mysql> CREATE TABLE Worker (
+    -> WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    -> FIRST_NAME CHAR(25),
+    -> LAST_NAME CHAR(25),
+    -> SALARY INT(15),
+    -> JOINING_DATE DATETIME,
+    -> DEPARTMENT CHAR(25)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> INSERT INTO Worker
+    -> (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+    -> (001, 'Monika', 'Arora', 100000, '21-02-20 09.00.00', 'HR'),
+    -> (002, 'Niharika', 'Verma', 80000, '21-06-11 09.00.00', 'Admin'),
+    -> (003, 'Vishal', 'Singhal', 300000, '21-02-20 09.00.00', 'HR'),
+    -> (004, 'Amitabh', 'Singh', 500000, '21-02-20 09.00.00', 'Admin'),
+    -> (005, 'Vivek', 'Bhati', 500000, '21-06-11 09.00.00', 'Admin'),
+    -> (006, 'Vipul', 'Diwan', 200000, '21-06-11 09.00.00', 'Account'),
+    -> (007, 'Satish', 'Kumar', 75000, '21-01-20 09.00.00', 'Account'),
+    -> (008, 'Geetika', 'Chauhan', 90000, '21-04-11 09.00.00', 'Admin');
+Query OK, 8 rows affected, 8 warnings (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 8
+
+mysql> CREATE TABLE Bonus (
+    -> WORKER_REF_ID INT,
+    -> BONUS_AMOUNT INT(10),
+    -> BONUS_DATE DATETIME,
+    -> FOREIGN KEY (WORKER_REF_ID)
+    -> REFERENCES Worker(WORKER_ID)
+    ->         ON DELETE CASCADE
+    -> );
+Query OK, 0 rows affected, 1 warning (0.05 sec)
+
+mysql> INSERT INTO Bonus
+    -> (WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+    -> (001, 5000, '23-02-20'),
+    -> (002, 3000, '23-06-11'),
+    -> (003, 4000, '23-02-20'),
+    -> (001, 4500, '23-02-20'),
+    -> (002, 3500, '23-06-11');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE Title (
+    -> WORKER_REF_ID INT,
+    -> WORKER_TITLE CHAR(25),
+    -> AFFECTED_FROM DATETIME,
+    -> FOREIGN KEY (WORKER_REF_ID)
+    -> REFERENCES Worker(WORKER_ID)
+    ->         ON DELETE CASCADE
+    -> );
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO Title
+    -> (WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+    ->  (001, 'Manager', '2023-02-20 00:00:00'),
+    ->  (002, 'Executive', '2023-06-11 00:00:00'),
+    ->  (008, 'Executive', '2023-06-11 00:00:00'),
+    ->  (005, 'Manager', '2023-06-11 00:00:00'),
+    ->  (004, 'Asst. Manager', '2023-06-11 00:00:00'),
+    ->  (007, 'Executive', '2023-06-11 00:00:00'),
+    ->  (006, 'Lead', '2023-06-11 00:00:00'),
+    ->  (003, 'Lead', '2023-06-11 00:00:00');
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from worker;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | Monika     | Arora     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | Niharika   | Verma     |  80000 | 2021-06-11 09:00:00 | Admin      |
+|         3 | Vishal     | Singhal   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | Amitabh    | Singh     | 500000 | 2021-02-20 09:00:00 | Admin      |
+|         5 | Vivek      | Bhati     | 500000 | 2021-06-11 09:00:00 | Admin      |
+|         6 | Vipul      | Diwan     | 200000 | 2021-06-11 09:00:00 | Account    |
+|         7 | Satish     | Kumar     |  75000 | 2021-01-20 09:00:00 | Account    |
+|         8 | Geetika    | Chauhan   |  90000 | 2021-04-11 09:00:00 | Admin      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from title;
++---------------+---------------+---------------------+
+| WORKER_REF_ID | WORKER_TITLE  | AFFECTED_FROM       |
++---------------+---------------+---------------------+
+|             1 | Manager       | 2023-02-20 00:00:00 |
+|             2 | Executive     | 2023-06-11 00:00:00 |
+|             8 | Executive     | 2023-06-11 00:00:00 |
+|             5 | Manager       | 2023-06-11 00:00:00 |
+|             4 | Asst. Manager | 2023-06-11 00:00:00 |
+|             7 | Executive     | 2023-06-11 00:00:00 |
+|             6 | Lead          | 2023-06-11 00:00:00 |
+|             3 | Lead          | 2023-06-11 00:00:00 |
++---------------+---------------+---------------------+
+8 rows in set (0.00 sec)
+............................................................................................................................Q-1. Write an SQL query to fetch “FIRST_NAME” from the Worker table using the alias name <WORKER_NAME>.
+ans:
+
+mysql> select first_name as fname from worker;
++----------+
+| fname    |
++----------+
+| Monika   |
+| Niharika |
+| Vishal   |
+| Amitabh  |
+| Vivek    |
+| Vipul    |
+| Satish   |
+| Geetika  |
++----------+
+8 rows in set (0.00 sec)
+...........................................................................................................................
+Q-2. Write an SQL query to fetch “FIRST_NAME” from the Worker table in upper case.
+ans:
+mysql> select upper(first_name) from worker;
++-------------------+
+| upper(first_name) |
++-------------------+
+| MONIKA            |
+| NIHARIKA          |
+| VISHAL            |
+| AMITABH           |
+| VIVEK             |
+| VIPUL             |
+| SATISH            |
+| GEETIKA           |
++-------------------+
+8 rows in set (0.00 sec)
+
+
+LOWERCASE:
+ select lower(first_name) from  worker;
++-------------------+
+| lower(first_name) |
++-------------------+
+| monika            |
+| niharika          |
+| vishal            |
+| amitabh           |
+| vivek             |
+| vipul             |
+| satish            |
+| geetika           |
++-------------------+
+8 rows in set (0.00 sec)
+
+...........................................................................................................................
+Q-3. Write an SQL query to fetch unique values of DEPARTMENT from the Worker table.
+ans:
+select distinct(first_name) from worker;
++------------+
+| first_name |
++------------+
+| Monika     |
+| Niharika   |
+| Vishal     |
+| Amitabh    |
+| Vivek      |
+| Vipul      |
+| Satish     |
+| Geetika    |
++------------+
+8 rows in set (0.00 sec)
+...........................................................................................................................
+Q-4. Write an SQL query to print the first three characters of  FIRST_NAME from the Worker table.
+ans:
+
+
+mysql> select left(first_name,3) from worker;
+#it wil print first 3 character
++--------------------+
+| left(first_name,3) |
++--------------------+
+| Mon                |
+| Nih                |
+| Vis                |
+| Ami                |
+| Viv                |
+| Vip                |
+| Sat                |
+| Gee                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> select right(first_name,3) from worker;
+#it will print last 3 character.
++---------------------+
+| right(first_name,3) |
++---------------------+
+| ika                 |
+| ika                 |
+| hal                 |
+| abh                 |
+| vek                 |
+| pul                 |
+| ish                 |
+| ika                 |
++---------------------+
+8 rows in set (0.00 sec)
+...........................................................................................................................
+Q-5. Write an SQL query to find the position of the alphabet (‘a’) in the first name column ‘Amitabh’ from the Worker table.
+ans:
+
+mysql> select locate ("a",first_name) from worker where first_name="amitabh";
++-------------------------+
+| locate ("a",first_name) |
++-------------------------+
+|                       1 |
++-------------------------+
+1 row in set (0.00 sec)
+example:
+
+mysql> select locate ("a",first_name) from worker where first_name="niharika";
++-------------------------+
+| locate ("a",first_name) |
++-------------------------+
+|                       4 |
++-------------------------+
+1 row in set (0.00 sec)
+...........................................................................................................................
+Q-6. Write an SQL query to print the FIRST_NAME from the Worker table after removing white spaces from the right side.
+ANS:
+The TRIM() function is used to perform this operation. It removes leading and trailing spaces, tabs, and newline characters from a string.
+RTRIM() function removes trailing spaces from a string.
+SELECT RTRIM('SQL Tutorial     ') AS RightTrimmedString;
+Note: Also look at the LTRIM() function.
+
+mysql> SELECT TRIM(first_name) from worker;
++------------------+
+| TRIM(first_name) |
++------------------+
+| Monika           |
+| Niharika         |
+| Vishal           |
+| Amitabh          |
+| Vivek            |
+| Vipul            |
+| Satish           |
+| Geetika          |
++------------------+
+8 rows in set (0.00 sec)
+
+mysql> Select RTRIM(FIRST_NAME) from Worker;
++-------------------+
+| RTRIM(FIRST_NAME) |
++-------------------+
+| Monika            |
+| Niharika          |
+| Vishal            |
+| Amitabh           |
+| Vivek             |
+| Vipul             |
+| Satish            |
+| Geetika           |
++-------------------+
+8 rows in set (0.00 sec)
+
+mysql> Select LTRIM(FIRST_NAME) from Worker;
++-------------------+
+| LTRIM(FIRST_NAME) |
++-------------------+
+| Monika            |
+| Niharika          |
+| Vishal            |
+| Amitabh           |
+| Vivek             |
+| Vipul             |
+| Satish            |
+| Geetika           |
++-------------------+
+8 rows in set (0.00 sec)
+...........................................................................................................................
+Q-7. Write an SQL query to print the DEPARTMENT from the Worker table after removing white spaces from the left side.
+ans:
+ Select LTRIM(department) from Worker;
++-------------------+
+| LTRIM(department) |
++-------------------+
+| HR                |
+| Admin             |
+| HR                |
+| Admin             |
+| Admin             |
+| Account           |
+| Account           |
+| Admin             |
++-------------------+
+8 rows in set (0.00 sec)
+
+...........................................................................................................................
+Q-8. Write an SQL query that fetches the unique values of DEPARTMENT from the Worker table and prints its length.
+ans:
+
+select distinct length(department) from worker;
++--------------------+
+| length(department) |
++--------------------+
+|                  2 |
+|                  5 |
+|                  7 |
++--------------------+
+3 rows in set (0.00 sec)
+...........................................................................................................................
+Q-9. Write an SQL query to print the FIRST_NAME from the Worker table after replacing ‘a’ with ‘A’.
+ans:
+ Select REPLACE(FIRST_NAME,'a','A') from Worker;
++-----------------------------+
+| REPLACE(FIRST_NAME,'a','A') |
++-----------------------------+
+| MONIKA                      |
+| NIHARIKA                    |
+| VISHAL                      |
+| AMITABH                     |
+| VIVEK                       |
+| VIPUL                       |
+| SATISH                      |
+| GEETIKA                     |
++-----------------------------+
+8 rows in set (0.00 sec)
+
+mysql> Select REPLACE(FIRST_NAME,'A','a') from Worker;
++-----------------------------+
+| REPLACE(FIRST_NAME,'A','a') |
++-----------------------------+
+| MONIKa                      |
+| NIHaRIKa                    |
+| VISHaL                      |
+| aMITaBH                     |
+| VIVEK                       |
+| VIPUL                       |
+| SaTISH                      |
+| GEETIKa                     |
++-----------------------------+
+8 rows in set (0.00 sec)
+
+...........................................................................................................................
+Q-10. Write an SQL query to print the FIRST_NAME and LAST_NAME from the Worker table into a single column COMPLETE_NAME. A space char should separate them.
+ans:
+
+ Select CONCAT(FIRST_NAME, ' ', LAST_NAME) AS 'COMPLETE_NAME' from Worker;
++-----------------+
+| COMPLETE_NAME   |
++-----------------+
+| MONIKA ARORA    |
+| NIHARIKA VERMA  |
+| VISHAL SINGHAL  |
+| AMITABH SINGH   |
+| VIVEK BHATI     |
+| VIPUL DIWAN     |
+| SATISH KUMAR    |
+| GEETIKA CHAUHAN |
++-----------------+
+8 rows in set (0.00 sec)
+
+
+...........................................................................................................................
+Q-11. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending.
+ans:
+
+ Select * from Worker order by FIRST_NAME asc;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
+|         8 | GEETIKA    | CHAUHAN   |  90000 | 2021-04-11 09:00:00 | ADMIN      |
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | NIHARIKA   | VERMA     |  80000 | 2021-06-11 09:00:00 | ADMIN      |
+|         7 | SATISH     | KUMAR     |  75000 | 2021-01-20 09:00:00 | ACCOUNT    |
+|         6 | VIPUL      | DIWAN     | 200000 | 2021-06-11 09:00:00 | ACCOUNT    |
+|         3 | VISHAL     | SINGHAL   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         5 | VIVEK      | BHATI     | 500000 | 2021-06-11 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+...........................................................................................................................
+Q-12. Write an SQL query to print all Worker details from the Worker table order by FIRST_NAME Ascending and DEPARTMENT Descending.
+ans:
+
+
+mysql> Select * from Worker order by FIRST_NAME asc,DEPARTMENT desc;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
+|         8 | GEETIKA    | CHAUHAN   |  90000 | 2021-04-11 09:00:00 | ADMIN      |
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | NIHARIKA   | VERMA     |  80000 | 2021-06-11 09:00:00 | ADMIN      |
+|         7 | SATISH     | KUMAR     |  75000 | 2021-01-20 09:00:00 | ACCOUNT    |
+|         6 | VIPUL      | DIWAN     | 200000 | 2021-06-11 09:00:00 | ACCOUNT    |
+|         3 | VISHAL     | SINGHAL   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         5 | VIVEK      | BHATI     | 500000 | 2021-06-11 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+8 rows in set (0.00 sec)
+...........................................................................................................................
+Q-13. Write an SQL query to print details for Workers with the first names “Vipul” and “Satish” from the Worker table.
+ans:
+
+
+mysql> Select * from Worker where FIRST_NAME in ('Vipul','Satish');
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         6 | VIPUL      | DIWAN     | 200000 | 2021-06-11 09:00:00 | ACCOUNT    |
+|         7 | SATISH     | KUMAR     |  75000 | 2021-01-20 09:00:00 | ACCOUNT    |
++-----------+------------+-----------+--------+---------------------+------------+
+2 rows in set (0.00 sec)
+
+...........................................................................................................................
+Q-14. Write an SQL query to print details of workers excluding first names, “Vipul” and “Satish” from the Worker table.
+ans:
+
+
+mysql> Select * from Worker where FIRST_NAME not in ('Vipul','Satish');
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | NIHARIKA   | VERMA     |  80000 | 2021-06-11 09:00:00 | ADMIN      |
+|         3 | VISHAL     | SINGHAL   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
+|         5 | VIVEK      | BHATI     | 500000 | 2021-06-11 09:00:00 | ADMIN      |
+|         8 | GEETIKA    | CHAUHAN   |  90000 | 2021-04-11 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+6 rows in set (0.00 sec)
+...........................................................................................................................
+Q-15. Write an SQL query to print details of Workers with DEPARTMENT name as “Admin”.
+ans:
+ Select * from Worker where DEPARTMENT like 'Admin%';
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         2 | NIHARIKA   | VERMA     |  80000 | 2021-06-11 09:00:00 | ADMIN      |
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
+|         5 | VIVEK      | BHATI     | 500000 | 2021-06-11 09:00:00 | ADMIN      |
+|         8 | GEETIKA    | CHAUHAN   |  90000 | 2021-04-11 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+4 rows in set (0.08 sec)
+...............................................................................................................
+Q-16. Write an SQL query to print details of the Workers whose FIRST_NAME contains ‘a’.
+ans:
+Select * from Worker where FIRST_NAME like '%a%';
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | NIHARIKA   | VERMA     |  80000 | 2021-06-11 09:00:00 | ADMIN      |
+|         3 | VISHAL     | SINGHAL   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
+|         7 | SATISH     | KUMAR     |  75000 | 2021-01-20 09:00:00 | ACCOUNT    |
+|         8 | GEETIKA    | CHAUHAN   |  90000 | 2021-04-11 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+6 rows in set (0.00 sec)
+................................................................................................................................
+Q-17. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘a’.
+ans:
+ Select * from Worker where FIRST_NAME like '%a';
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         2 | NIHARIKA   | VERMA     |  80000 | 2021-06-11 09:00:00 | ADMIN      |
+|         8 | GEETIKA    | CHAUHAN   |  90000 | 2021-04-11 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+3 rows in set (0.00 sec)
+................................................................................................................................
+Q-18. Write an SQL query to print details of the Workers whose FIRST_NAME ends with ‘h’ and contains six alphabets.
+ans:
+> Select * from Worker where FIRST_NAME like '_____h';
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         7 | SATISH     | KUMAR     |  75000 | 2021-01-20 09:00:00 | ACCOUNT    |
++-----------+------------+-----------+--------+---------------------+------------+
+1 row in set (0.00 sec)
+/...................................................................................................................................
+Q-19. Write an SQL query to print details of the Workers whose SALARY lies between 100000 and 500000.
+ans:
+
+ Select * from Worker where SALARY between 100000 and 500000;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         3 | VISHAL     | SINGHAL   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
+|         5 | VIVEK      | BHATI     | 500000 | 2021-06-11 09:00:00 | ADMIN      |
+|         6 | VIPUL      | DIWAN     | 200000 | 2021-06-11 09:00:00 | ACCOUNT    |
++-----------+------------+-----------+--------+---------------------+------------+
+5 rows in set (0.02 sec)
+........................................................................................................................................
+Q-20. Write an SQL query to print details of the Workers who joined in Feb 2021.
+ans:
+ Select * from Worker where year(JOINING_DATE) = 2021 and month(JOINING_DATE) = 2;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         3 | VISHAL     | SINGHAL   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+3 rows in set (0.04 sec)
+.......................................................................................................................................
+Q-21. Write an SQL query to fetch the count of employees working in the department ‘Admin’.
+ans:
+ SELECT COUNT(*) FROM worker WHERE DEPARTMENT = 'Admin';
++----------+
+| COUNT(*) |
++----------+
+|        4 |
++----------+
+1 row in set (0.02 sec)
+.............................................................................................................................................
+Q-22. Write an SQL query to fetch worker names with salaries >= 50000 and <= 100000.
+ans:
+
+
+mysql> SELECT CONCAT(FIRST_NAME, ' ', LAST_NAME) As Worker_Name, Salary
+    -> FROM worker
+    -> WHERE WORKER_ID IN
+    -> (SELECT WORKER_ID FROM worker
+    -> WHERE Salary BETWEEN 50000 AND 100000);
++-----------------+--------+
+| Worker_Name     | Salary |
++-----------------+--------+
+| MONIKA ARORA    | 100000 |
+| NIHARIKA VERMA  |  80000 |
+| SATISH KUMAR    |  75000 |
+| GEETIKA CHAUHAN |  90000 |
++-----------------+--------+
+4 rows in set (0.02 sec)
+...........................................................................................................................................
+Q-23. Write an SQL query to fetch the number of workers for each department in descending order.
+ans:
+
+SELECT DEPARTMENT, count(WORKER_ID) No_Of_Workers
+    -> FROM worker
+    -> GROUP BY DEPARTMENT
+    -> ORDER BY No_Of_Workers DESC;
++------------+---------------+
+| DEPARTMENT | No_Of_Workers |
++------------+---------------+
+| ADMIN      |             4 |
+| HR         |             2 |
+| ACCOUNT    |             2 |
++------------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT DEPARTMENT, count(WORKER_ID) No_Of_Workers
+    -> FROM worker
+    -> GROUP BY DEPARTMENT
+    -> ORDER BY No_Of_Workers ASC;
++------------+---------------+
+| DEPARTMENT | No_Of_Workers |
++------------+---------------+
+| HR         |             2 |
+| ACCOUNT    |             2 |
+| ADMIN      |             4 |
++------------+---------------+
+3 rows in set (0.00 sec)
+................................................................................................................................................
+Q-24. Write an SQL query to print details of the Workers who are also Managers.
+ans:
+
+select * from title;
++---------------+---------------+---------------------+
+| WORKER_REF_ID | WORKER_TITLE  | AFFECTED_FROM       |
++---------------+---------------+---------------------+
+|             1 | Manager       | 2023-02-20 00:00:00 |
+|             2 | Executive     | 2023-06-11 00:00:00 |
+|             8 | Executive     | 2023-06-11 00:00:00 |
+|             5 | Manager       | 2023-06-11 00:00:00 |
+|             4 | Asst. Manager | 2023-06-11 00:00:00 |
+|             7 | Executive     | 2023-06-11 00:00:00 |
+|             6 | Lead          | 2023-06-11 00:00:00 |
+|             3 | Lead          | 2023-06-11 00:00:00 |
++---------------+---------------+---------------------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT W.FIRST_NAME, T.WORKER_TITLE
+    -> FROM Worker W
+    -> INNER JOIN Title T
+    -> ON W.WORKER_ID = T.WORKER_REF_ID
+    -> AND T.WORKER_TITLE in ('Manager');
++------------+--------------+
+| FIRST_NAME | WORKER_TITLE |
++------------+--------------+
+| MONIKA     | Manager      |
+| VIVEK      | Manager      |
++------------+--------------+
+2 rows in set (0.00 sec)
+................................................................................................................................................
+Q-25. Write an SQL query to fetch duplicate records having matching data in some fields of a table.
+ans:
+
+
+mysql> SELECT WORKER_TITLE, AFFECTED_FROM, COUNT(*)
+    -> FROM Title
+    -> GROUP BY WORKER_TITLE, AFFECTED_FROM
+    -> HAVING COUNT(*) > 1;
++--------------+---------------------+----------+
+| WORKER_TITLE | AFFECTED_FROM       | COUNT(*) |
++--------------+---------------------+----------+
+| Executive    | 2023-06-11 00:00:00 |        3 |
+| Lead         | 2023-06-11 00:00:00 |        2 |
++--------------+---------------------+----------+
+2 rows in set (0.00 sec)
+
+......................................................................................................................................................................
+Q-26. Write an SQL query to show only odd rows from a table.
+ans:
+ SELECT * FROM Worker WHERE MOD (WORKER_ID, 2) <> 0;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         1 | MONIKA     | ARORA     | 100000 | 2021-02-20 09:00:00 | HR         |
+|         3 | VISHAL     | SINGHAL   | 300000 | 2021-02-20 09:00:00 | HR         |
+|         5 | VIVEK      | BHATI     | 500000 | 2021-06-11 09:00:00 | ADMIN      |
+|         7 | SATISH     | KUMAR     |  75000 | 2021-01-20 09:00:00 | ACCOUNT    |
++-----------+------------+-----------+--------+---------------------+------------+
+4 rows in set (0.00 sec)
+................................................................................................................................................
+Q-27. Write an SQL query to show only even rows from a table.
+ans:
+ SELECT * FROM Worker WHERE MOD (WORKER_ID, 2) = 0;
++-----------+------------+-----------+--------+---------------------+------------+
+| WORKER_ID | FIRST_NAME | LAST_NAME | SALARY | JOINING_DATE        | DEPARTMENT |
++-----------+------------+-----------+--------+---------------------+------------+
+|         2 | NIHARIKA   | VERMA     |  80000 | 2021-06-11 09:00:00 | ADMIN      |
+|         4 | AMITABH    | SINGH     | 500000 | 2021-02-20 09:00:00 | ADMIN      |
+|         6 | VIPUL      | DIWAN     | 200000 | 2021-06-11 09:00:00 | ACCOUNT    |
+|         8 | GEETIKA    | CHAUHAN   |  90000 | 2021-04-11 09:00:00 | ADMIN      |
++-----------+------------+-----------+--------+---------------------+------------+
+4 rows in set (0.00 sec)
+
+.............................................................................................................................................
+Q-28. Write an SQL query to clone a new table from another table.
+...................................................................................................................................................
+Q-29. Write an SQL query to fetch intersecting records of two tables.
+.............................................................................................................................................................
+Q-30. Write an SQL query to show records from one table that another table does not have.
+............................................................................................................................................................
+Q-31. Write an SQL query to show the current date and time.
+..........................................................................................................................................................
+Q-32. Write an SQL query to show the top n (say 10) records of a table.
+..............................................................................................................................................................
+Q-33. Write an SQL query to determine the nth (say n=5) highest salary from a table.
+.............................................................................................................................................................
+Q-34. Write an SQL query to determine the 5th highest salary without using the TOP or limit method.
+.............................................................................................................................................................
+Q-35. Write an SQL query to fetch the list of employees with the same salary.
+.............................................................................................................................................................
+Q-36. Write an SQL query to show the second-highest salary from a table.
+.............................................................................................................................................................
+Q-37. Write an SQL query to show one row twice in the results from a table.
+.................................................................................................................................................................
+Q-38. Write an SQL query to fetch intersecting records of two tables.
+..................................................................................................................................................................
+Q-39. Write an SQL query to fetch the first 50% of records from a table.
+.................................................................................................................................................................
+Q-40. Write an SQL query to fetch the departments that have less than five people in them.
+.....................................................................................................................................................................
+Q-41. Write an SQL query to show all departments along with the number of people in there.
+.................................................................................................................................................................
+Q-42. Write an SQL query to show the last record from a table.
+....................................................................................................................................................................
+Q-43. Write an SQL query to fetch the first row of a table.
+.....................................................................................................................................................................
+Q-44. Write an SQL query to fetch the last five records from a table.
+....................................................................................................................................................................
+Q-45. Write an SQL query to print the names of employees having the highest salary in each department.
+......................................................................................................................................................................
+Q-46. Write an SQL query to fetch three max salaries from a table.
+.......................................................................................................................................................................
+Q-47. Write an SQL query to fetch three min salaries from a table.
+.......................................................................................................................................................................
+Q-48. Write an SQL query to fetch nth max salaries from a table.
+.......................................................................................................................................................................
+Q-49. Write an SQL query to fetch departments along with the total salaries paid for each of them.
+......................................................................................................................................................................
+Q-50. Write an SQL query to fetch the names of workers who earn the highest salary.
+.......................................................................................................................................................................
